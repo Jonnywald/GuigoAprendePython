@@ -3,7 +3,7 @@ from Sqrt import raizQuadrada
 from constantes import *
 #abaixo: converção de graus para radianos
 def converterGrausParaRad(numero):
-	rad = (numero/180)*const_Pi
+	rad = (numero/180)*const_Pi()
 	return rad
 #abaixo: definição da função seno por sin² + cos² = 1
 def seno(numero):
@@ -27,7 +27,7 @@ def tangente(numero):
 #abaixo: definição da função cotangente pela propria definição
 def cotangente(numero):
 	resultado = 0
-	resultado = ((coseno(numero))/(seno(numero))
+	resultado = (coseno(numero))/(seno(numero))
 	return resultado
 #abaixo: definição da função secante pela propria definição
 def secante(numero):
