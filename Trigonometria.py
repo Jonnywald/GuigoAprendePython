@@ -10,7 +10,7 @@ def seno(numero):
 	resultado = 0
 	resultado = raizQuadrada(1 - (coseno(numero))**2)
 	return resultado
-#abaixo:definição da função coseno pela expanção da serie de taylor 
+#abaixo:definição da função coseno pela sua expanção da serie de taylor 
 def coseno(rad):
 	numero = converterGrausParaRad(rad)
 	cont = 0

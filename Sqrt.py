@@ -1,3 +1,6 @@
+#raiz quadrada
+#arquivo feito por Guilherme Del Rio
+#abaixo: calculo de raiz quadrada pelo metodo babilônico
 def raizQuadrada (numero):
 	chute = 1
 	cont = 0
