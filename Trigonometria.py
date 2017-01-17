@@ -9,16 +9,16 @@ def converterGrausParaRad(numero):
 def seno(numero):
 	resultado = 0
 	resultado = raizQuadrada(1 - (coseno(numero))**2)
-	return resultado
+	return round(resultado,10)
 #abaixo:definição da função coseno pela sua expanção da serie de taylor 
 def coseno(rad):
 	numero = converterGrausParaRad(rad)
 	cont = 0
-	resultado = 0
+	resultado = 1
 	while(cont < 50):
 		cont += 1
 		resultado += (((-1)**cont)*(numero**(2 * cont)))/(fatorial(2 * cont))
-	return resultado
+	return round(resultado,10)
 #abaixo: definição da função tangente pela propria definição
 def tangente(numero):
 	resultado = 0
