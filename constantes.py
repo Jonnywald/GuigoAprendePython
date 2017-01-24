@@ -12,7 +12,7 @@ def const_e():
 	return e
 #abaixo: calculo do numero PI pela serie de Nilakantha.
 def const_Pi():
-	pi = 3
+	pi = Decimal(3)
 	cont = 0
 	sinal = 1
 	div1 = 2
@@ -20,12 +20,12 @@ def const_Pi():
 	div3 = 4
 	while(cont < 10000):
 		cont += 1
-		pi += (4/(div1*div2*div3))*sinal
+		pi += (Decimal(4)/(Decimal(div1)*Decimal(div2)*Decimal(div3)))*sinal
 		sinal *= -1
 		div1 += 2
 		div2 += 2
 		div3 += 2
 	return pi
 	
-#print (const_Pi())
-print (const_e())
+print (const_Pi())
+#print (const_e())
