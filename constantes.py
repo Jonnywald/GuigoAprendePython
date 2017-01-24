@@ -1,12 +1,14 @@
 #constantes matematicas
 #aquivo feito por Guilherme Del Rio
 from fatorial import fatorial
-#abaixo: calculo do numero de euler com base na sua definição como limite tendendo ao infinito
-#aproximação utilizando 50!(cinquenta fatorial)
+from decimal import *
+getcontext().prec = 30
+#abaixo calculo do numero de euler com base na sua definicao como limite tendendo ao infinito
+#aproximacao utilizando 50!(cinquenta fatorial)
 def const_e():
-	n = fatorial(12)
+	n = fatorial(20)
 	#print (n)
-	e = (1+(1/n))**n
+	e = (Decimal(1)+(Decimal(1)/Decimal(n)))**Decimal(n)
 	return e
 #abaixo: calculo do numero PI pela serie de Nilakantha.
 def const_Pi():
@@ -26,4 +28,4 @@ def const_Pi():
 	return pi
 	
 #print (const_Pi())
-#print (const_e())
+print (const_e())

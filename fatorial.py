@@ -1,6 +1,6 @@
 #fatorial
 #arquivo feito por Guilherme Del Rio
-#abaixo: calculo de fatorial pela propria definição
+#abaixo: calculo de fatorial pela propria definicao
 def fatorial(numero):
 	
 	if numero == 0:
