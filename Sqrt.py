@@ -1,10 +1,11 @@
 #raiz quadrada
 #arquivo feito por Guilherme Del Rio
 #abaixo: calculo de raiz quadrada pelo metodo babilônico
+from decimal import *
 def raizQuadrada (numero):
-	chute = 1
-	cont = 0
+	chute = Decimal(1)
+	cont = Decimal(0)
 	while (((numero/chute)!=chute) and (cont < 100)):
-		chute = ((numero/chute)+chute)/2
-		cont += 1
-	return chute
+		chute = Decimal(((numero/chute)+chute))/Decimal(2)
+		cont += Decimal(1)
+	return Decimal(chute)

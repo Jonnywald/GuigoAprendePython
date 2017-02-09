@@ -1,10 +1,11 @@
 from fatorial import fatorial
 from Sqrt import raizQuadrada
 from constantes import *
+from decimal import *
 #abaixo: converção de graus para radianos
 def converterGrausParaRad(numero):
-	rad = (numero/180)*const_Pi()
-	return rad
+	rad = (Decimal(numero)/Decimal(180))*const_Pi()
+	return Decimal(rad)
 #abaixo: definição da função seno por sin² + cos² = 1
 def seno(numero):
 	resultado = 0
@@ -15,9 +16,11 @@ def coseno(rad):
 	numero = converterGrausParaRad(rad)
 	cont = 0
 	resultado = 1
+	signal = -1
 	while(cont < 50):
 		cont += 1
-		resultado += (((-1)**cont)*(numero**(2 * cont)))/(fatorial(2 * cont))
+		resultado += (signal*(numero**(2 * cont)))/(fatorial(2 * cont))
+		signal *= -1
 	return round(resultado,10)
 #abaixo: definição da função tangente pela propria definição
 def tangente(numero):

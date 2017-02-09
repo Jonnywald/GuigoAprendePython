@@ -9,23 +9,23 @@ def const_e():
 	n = fatorial(20)
 	#print (n)
 	e = (Decimal(1)+(Decimal(1)/Decimal(n)))**Decimal(n)
-	return e
+	return Decimal(e)
 #abaixo: calculo do numero PI pela serie de Nilakantha.
 def const_Pi():
 	pi = Decimal(3)
-	cont = 0
-	sinal = 1
-	div1 = 2
-	div2 = 3
-	div3 = 4
+	cont = Decimal(0)
+	sinal = Decimal(1)
+	div1 = Decimal(2)
+	div2 = Decimal(3)
+	div3 = Decimal(4)
 	while(cont < 10000):
-		cont += 1
+		cont += Decimal(1)
 		pi += (Decimal(4)/(Decimal(div1)*Decimal(div2)*Decimal(div3)))*sinal
-		sinal *= -1
-		div1 += 2
-		div2 += 2
-		div3 += 2
-	return pi
+		sinal *= Decimal(-1)
+		div1 += Decimal(2)
+		div2 += Decimal(2)
+		div3 += Decimal(2)
+	return Decimal(pi)
 	
 print (const_Pi())
 #print (const_e())
