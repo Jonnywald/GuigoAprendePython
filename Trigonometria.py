@@ -1,3 +1,5 @@
+#Trigonometria
+#arquivo feito por Guilherme Del Rio
 from fatorial import fatorial
 from Sqrt import raizQuadrada
 from constantes import *
