@@ -27,34 +27,61 @@ class dicotomia():
     def getresult(self):
         return self.result
 class interpo_lagrange():
-    def __init__(self,entrada):
-        self.saida = Decimal(0)
-        self.entrada = Decimal(entrada)
-    def calc_grau1(self,x0,fx0,x1,fx1):
-        l0 = (Decimal(self.entrada-x1)/Decimal(x0-x1))
-        l1 = (Decimal(self.entrada-x0)/Decimal(x1-x0))
-        px = Decimal(Decimal(l0)*Decimal(fx0))+Decimal(Decimal(l1)*Decimal(fx1))
-        self.saida = Decimal(px)
-    def calc_grau2(self,x0,fx0,x1,fx1,x2,fx2):
-        l0 = (Decimal(self.entrada-x1)/Decimal(x0-x1))*(Decimal(self.entrada-x2)/Decimal(x0-x2))
-        l1 = (Decimal(self.entrada-x0)/Decimal(x1-x0))*(Decimal(self.entrada-x2)/Decimal(x1-x2))
-        l2 = (Decimal(self.entrada-x0)/Decimal(x2-x0))*(Decimal(self.entrada-x1)/Decimal(x2-x1))
-        px = Decimal(Decimal(l0)*Decimal(fx0))+Decimal(Decimal(l1)*Decimal(fx1))+Decimal(Decimal(l2)*Decimal(fx2))
-        self.saida = Decimal(px)
-    def calc_grau3(self,x0,fx0,x1,fx1,x2,fx2,x3,fx3):
-        l0 = (Decimal(self.entrada-x1)/Decimal(x0-x1))*(Decimal(self.entrada-x2)/Decimal(x0-x2))*(Decimal(self.entrada-x3)/Decimal(x0-x3))
-        l1 = (Decimal(self.entrada-x0)/Decimal(x1-x0))*(Decimal(self.entrada-x2)/Decimal(x1-x2))*(Decimal(self.entrada-x3)/Decimal(x1-x3))
-        l2 = (Decimal(self.entrada-x0)/Decimal(x2-x0))*(Decimal(self.entrada-x1)/Decimal(x2-x1))*(Decimal(self.entrada-x3)/Decimal(x2-x3))
-        l3 = (Decimal(self.entrada-x0)/Decimal(x3-x0))*(Decimal(self.entrada-x1)/Decimal(x3-x1))*(Decimal(self.entrada-x2)/Decimal(x3-x2))
-        px = Decimal(Decimal(l0)*Decimal(fx0))+Decimal(Decimal(l1)*Decimal(fx1))+Decimal(Decimal(l2)*Decimal(fx2))+Decimal(Decimal(l3)*Decimal(fx3))
-        self.saida = Decimal(px)
-    def getSaida(self):
+    #metodo construtor (inicializa as variaveis)
+    def __init__(self):
+        self.x = [];
+        self.saida = Decimal(0);
+        self.entrada = None;
+    #adiciona um ponto(x e y) para a lista de pontos
+    def add_ponto(self,x,fx):
+        tupla = (x,fx);
+        self.x.append(tupla);
+    #seta uma valor para se calcular
+    def set_entrada(self,val):
+        self.entrada = Decimal(val);
+    #calculo do resultado da interpolacao pelo metodo de lagrange
+    def calc_saida(self):
+        #checa se foi setado um valor para se calcular
+        if (not(self.entrada is None)):
+            #checa se tem o numero necessario de pontos para iniciar a interpolacao
+            if (len(self.x)>1):
+                #variaveis para o inicio da lista de pontos
+                a = 0;
+                b = 0;
+                #variavel para o somatório
+                soma = 0;
+                while(a<len(self.x)):
+                    #variavel para o produtorio sempre se reinicializando
+                    prod = 1;
+                    while(b<len(self.x)):
+                        #desconsiderando valores iguais com o intuido de não geral uma indeterminação matematica (divisao por zero)
+                        if (a!=b):
+                            #calculo do produtorio (ja com um valor setado) pelo metodo de lagrange para o polinomio
+                            prod *= Decimal(Decimal(self.entrada-self.x[b][0])/Decimal(self.x[a][0]-self.x[b][0]));
+                        b += 1;
+                    #calculo do polinomio com um valor ja setado
+                    soma += Decimal(prod)*Decimal(self.x[a][1])
+                    a += 1;
+                #atribuicao do valor para o atributo do objeto
+                self.saida = soma;
+            else:
+                #caso nao haja pontos o suficiente para realizar a intepolacao é exibida a mensagem abaixo
+                print('Erro! adicione mais pontos!');
+        else:
+            #caso nao haja um valor inicial para realizar a intepolacao é exibida a mensagem abaixo
+            print('Erro! adicione uma entrada!');
+    #retorna o resultado da interpolacao
+    def get_saida(self):
         return self.saida
 
 re = dicotomia(0,2,0.03)
 r = re.getresult()
 print ("Resultado: ", r[0], " ± ", r[1])
 
-var = interpo_lagrange(2)
-var.calc_grau2(0,5,3,14,5,6)
-print (var.getSaida())
+var = interpo_lagrange()
+var.set_entrada(0)
+var.add_ponto(0,5)
+var.add_ponto(3,14)
+var.add_ponto(5,6)
+var.calc_saida()
+print ('Resultado: ',var.get_saida())
